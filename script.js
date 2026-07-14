@@ -1,4 +1,26 @@
 /* ═══════════════════════════════════════
+   0. ЭКРАН ЗАГРУЗКИ
+   document.fonts.ready — ждём реально шрифты,
+   но не дольше 2.5с (fallback таймер)
+═══════════════════════════════════════ */
+const loader = document.getElementById("loader");
+
+function hideLoader() {
+  loader.classList.add("hidden");
+  document.body.classList.remove("loading");
+}
+
+// Страховочный таймер — если шрифты не грузятся > 2.5s, показываем всё равно
+const loaderTimeout = setTimeout(hideLoader, 2500);
+
+document.fonts.ready.then(() => {
+  clearTimeout(loaderTimeout);
+  // Небольшая пауза чтобы первый кадр рендера с шрифтами успел нарисоваться
+  requestAnimationFrame(() => requestAnimationFrame(hideLoader));
+});
+
+
+/* ═══════════════════════════════════════
    ФЛАГИ УСТРОЙСТВА
 ═══════════════════════════════════════ */
 const isMobile       = window.matchMedia('(max-width: 900px)').matches;
@@ -156,7 +178,11 @@ new IntersectionObserver(entries=>{
 const workCards = document.querySelectorAll('.work-card');
 
 // Расставляем data-delay по колонкам: 0,1,2,0,1,2...
-workCards.forEach((card,i) => card.setAttribute('data-delay', i%6));
+// На мобиле grid — stagger по позиции в ряду (колонка 0 или 1)
+workCards.forEach((card,i) => {
+  const delay = isMobile ? i % 2 : i % 6;
+  card.setAttribute('data-delay', delay);
+});
 
 // Scroll-reveal — порог ниже чтобы карточка показалась раньше
 const workObs = new IntersectionObserver(entries=>{
