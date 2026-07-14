@@ -464,6 +464,11 @@ h1 .accent-mint { background: var(--mint); }
   .services { padding: 60px 28px; }
   .services-grid { grid-template-columns: 1fr; gap: 16px; }
 
+  .about { padding: 60px 28px; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-card { transform: rotate(-1deg); }
+  .about-sticker { right: -12px; bottom: -16px; }
+
   /* Grid вместо columns — ряды выровнены, нет дыр */
   .works-grid {
     columns: unset;
@@ -518,6 +523,13 @@ h1 .accent-mint { background: var(--mint); }
   .section-title { font-size: 26px; }
   .filter-btn { font-size: 11px; padding: 6px 12px; }
   .filters { gap: 7px; }
+
+  .about { padding: 44px 20px; }
+  .about-para { font-size: 15px; }
+  .about-badge { font-size: 12px; padding: 6px 13px; }
+  .about-sticker-stars { font-size: 17px; }
+  .about-ctas { flex-direction: column; align-items: stretch; }
+  .about-ctas .btn-main, .about-ctas .btn-sec { justify-content: center; }
 }
 
 
@@ -571,4 +583,74 @@ body.loading { overflow: hidden; }
 @media (max-width: 900px) {
   .work-card[data-delay="0"] { transition-delay: 0s; }
   .work-card[data-delay="1"] { transition-delay: 0.08s; }
+}
+
+/* ── Обо мне ── */
+.about { position: relative; z-index: 5; padding: 80px 48px; }
+
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about-visual { position: relative; }
+
+.about-card {
+  position: relative;
+  border: 3px solid var(--dark); border-radius: 24px;
+  overflow: visible;
+  box-shadow: 6px 6px 0 var(--dark);
+  transform: rotate(-1.5deg);
+}
+
+.about-svg {
+  display: block; width: 100%; border-radius: 21px;
+  overflow: hidden;
+}
+
+.about-sticker {
+  position: absolute;
+  bottom: -20px; right: -24px;
+  background: white;
+  border: 3px solid var(--dark); border-radius: 16px;
+  box-shadow: 5px 5px 0 var(--dark);
+  padding: 12px 18px;
+  transform: rotate(4deg);
+  z-index: 2;
+}
+.about-sticker-stars {
+  font-size: 20px; color: #FFB300;
+  letter-spacing: 2px; line-height: 1;
+}
+.about-sticker-label {
+  font-size: 11px; font-weight: 900;
+  color: var(--dark); margin-top: 5px;
+  white-space: nowrap;
+}
+
+.about-text {
+  display: flex; flex-direction: column; gap: 24px;
+}
+
+.about-para {
+  font-size: 16px; font-weight: 700;
+  color: var(--dark); opacity: 0.7;
+  line-height: 1.65;
+}
+
+.about-badges {
+  display: flex; flex-wrap: wrap; gap: 10px;
+}
+.about-badge {
+  font-size: 13px; font-weight: 900; color: var(--dark);
+  background: white;
+  border: 2.5px solid var(--dark); border-radius: 99px;
+  padding: 7px 16px;
+  box-shadow: 3px 3px 0 var(--dark);
+}
+
+.about-ctas {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
 }
