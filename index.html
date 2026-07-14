@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nika Nails — Маникюр</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="blob-wrap">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+
+<!-- Мобильное меню -->
+<div class="mobile-menu">
+  <button class="mobile-menu-close">✕</button>
+  <a href="#works">Работы</a>
+  <a href="#services">Услуги</a>
+  <a href="#about">Обо мне</a>
+  <a href="#contacts">Контакты</a>
+</div>
+
+<nav>
+  <div class="logo">nika<span>nails</span></div>
+  <ul class="nav-links">
+    <li><a href="#works">Работы</a></li>
+    <li><a href="#services">Услуги</a></li>
+    <li><a href="#about">Обо мне</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+  </ul>
+  <button class="burger" aria-label="Меню">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="tag">✦ Москва · Запись открыта</div>
+    <h1>
+      <span class="h1-line"><span class="h1-line-inner">Ногти,</span></span>
+      <span class="h1-line"><span class="h1-line-inner">которые</span></span>
+      <span class="h1-line has-accent"><span class="h1-line-inner"><span class="accent-pink">говорят</span></span></span>
+      <span class="h1-line has-accent"><span class="h1-line-inner">за тебя <span class="accent-mint">сами</span></span></span>
+    </h1>
+    <p class="subhead">Маникюр и дизайн ногтей — от минимализма до сумасшедших идей. Каждый клиент — новое вдохновение.</p>
+    <div class="hero-ctas">
+      <a href="#contacts" class="btn-main">Записаться ✦</a>
+      <a href="#works" class="btn-sec">Смотреть работы →</a>
+    </div>
+  </div>
+
+  <!-- Десктоп: абсолютные карточки -->
+  <div class="hero-right">
+    <div class="sticker-card card-1">
+      <svg class="card-img" viewBox="0 0 200 165" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFB3D9"/><stop offset="100%" stop-color="#FF6BBB"/></linearGradient></defs>
+        <rect width="200" height="165" fill="url(#g1)"/>
+        <ellipse cx="50"  cy="100" rx="22" ry="32" fill="white" opacity="0.9"/>
+        <ellipse cx="100" cy="95"  rx="22" ry="36" fill="white" opacity="0.9"/>
+        <ellipse cx="150" cy="100" rx="22" ry="32" fill="white" opacity="0.9"/>
+        <circle cx="100" cy="82" r="7" fill="#FF8AC4" opacity="0.8"/>
+        <circle cx="82"  cy="90" r="4" fill="#FFE566" opacity="0.9"/>
+        <circle cx="118" cy="90" r="4" fill="#FFE566" opacity="0.9"/>
+        <text x="100" y="140" text-anchor="middle" fill="white" font-size="22" opacity="0.5">✦</text>
+      </svg>
+      <div class="card-label"><span>Романтик</span><div class="card-dot"></div></div>
+    </div>
+
+    <div class="sticker-card card-2">
+      <svg class="card-img" viewBox="0 0 175 146" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B3F5E0"/><stop offset="100%" stop-color="#4DD9A0"/></linearGradient></defs>
+        <rect width="175" height="146" fill="url(#g2)"/>
+        <ellipse cx="50"  cy="88" rx="20" ry="28" fill="white" opacity="0.9"/>
+        <ellipse cx="90"  cy="82" rx="20" ry="33" fill="white" opacity="0.9"/>
+        <ellipse cx="130" cy="88" rx="20" ry="28" fill="white" opacity="0.9"/>
+        <line x1="40" y1="72" x2="60" y2="72" stroke="#7EEAC0" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="80" y1="66" x2="100" y2="66" stroke="#7EEAC0" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="120" y1="72" x2="140" y2="72" stroke="#7EEAC0" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="90" cy="55" r="10" fill="white" opacity="0.4"/>
+      </svg>
+      <div class="card-label"><span>Минимал</span><div class="card-dot"></div></div>
+    </div>
+
+    <div class="sticker-card card-3">
+      <svg class="card-img" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#D4BBFF"/><stop offset="100%" stop-color="#9B6FFF"/></linearGradient></defs>
+        <rect width="220" height="150" fill="url(#g3)"/>
+        <ellipse cx="55"  cy="95" rx="22" ry="32" fill="white" opacity="0.9"/>
+        <ellipse cx="110" cy="88" rx="22" ry="36" fill="white" opacity="0.9"/>
+        <ellipse cx="165" cy="95" rx="22" ry="32" fill="white" opacity="0.9"/>
+        <text x="55"  y="85" text-anchor="middle" fill="#C9AAFF" font-size="16">★</text>
+        <text x="110" y="78" text-anchor="middle" fill="#C9AAFF" font-size="20">★</text>
+        <text x="165" y="85" text-anchor="middle" fill="#C9AAFF" font-size="16">★</text>
+      </svg>
+      <div class="card-label"><span>Гэлекси</span><div class="card-dot"></div></div>
+    </div>
+
+    <div class="sticker-card card-4">
+      <svg class="card-img" viewBox="0 0 165 135" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE98A"/><stop offset="100%" stop-color="#FFCA28"/></linearGradient></defs>
+        <rect width="165" height="135" fill="url(#g4)"/>
+        <ellipse cx="42"  cy="82" rx="18" ry="26" fill="white" opacity="0.9"/>
+        <ellipse cx="83"  cy="76" rx="18" ry="30" fill="white" opacity="0.9"/>
+        <ellipse cx="124" cy="82" rx="18" ry="26" fill="white" opacity="0.9"/>
+        <text x="83"  y="68" text-anchor="middle" fill="#FFB300" font-size="18">✦</text>
+        <text x="42"  y="74" text-anchor="middle" fill="#FFD23F" font-size="12">•</text>
+        <text x="124" y="74" text-anchor="middle" fill="#FFD23F" font-size="12">•</text>
+      </svg>
+      <div class="card-label"><span>Sunshine</span><div class="card-dot"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Мобиль: горизонтальный скролл карточек -->
+<div class="cards-scroll">
+  <div class="sticker-card">
+    <svg class="card-img" viewBox="0 0 200 165" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="m1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFB3D9"/><stop offset="100%" stop-color="#FF6BBB"/></linearGradient></defs>
+      <rect width="200" height="165" fill="url(#m1)"/>
+      <ellipse cx="50" cy="100" rx="22" ry="32" fill="white" opacity="0.9"/>
+      <ellipse cx="100" cy="95" rx="22" ry="36" fill="white" opacity="0.9"/>
+      <ellipse cx="150" cy="100" rx="22" ry="32" fill="white" opacity="0.9"/>
+    </svg>
+    <div class="card-label"><span>Романтик</span><div class="card-dot" style="background:var(--pink)"></div></div>
+  </div>
+  <div class="sticker-card">
+    <svg class="card-img" viewBox="0 0 175 146" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="m2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#B3F5E0"/><stop offset="100%" stop-color="#4DD9A0"/></linearGradient></defs>
+      <rect width="175" height="146" fill="url(#m2)"/>
+      <ellipse cx="50" cy="88" rx="20" ry="28" fill="white" opacity="0.9"/>
+      <ellipse cx="90" cy="82" rx="20" ry="33" fill="white" opacity="0.9"/>
+      <ellipse cx="130" cy="88" rx="20" ry="28" fill="white" opacity="0.9"/>
+    </svg>
+    <div class="card-label"><span>Минимал</span><div class="card-dot" style="background:var(--mint)"></div></div>
+  </div>
+  <div class="sticker-card">
+    <svg class="card-img" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="m3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#D4BBFF"/><stop offset="100%" stop-color="#9B6FFF"/></linearGradient></defs>
+      <rect width="220" height="150" fill="url(#m3)"/>
+      <ellipse cx="55" cy="95" rx="22" ry="32" fill="white" opacity="0.9"/>
+      <ellipse cx="110" cy="88" rx="22" ry="36" fill="white" opacity="0.9"/>
+      <ellipse cx="165" cy="95" rx="22" ry="32" fill="white" opacity="0.9"/>
+    </svg>
+    <div class="card-label"><span>Гэлекси</span><div class="card-dot" style="background:var(--lilac)"></div></div>
+  </div>
+  <div class="sticker-card">
+    <svg class="card-img" viewBox="0 0 165 135" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="m4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE98A"/><stop offset="100%" stop-color="#FFCA28"/></linearGradient></defs>
+      <rect width="165" height="135" fill="url(#m4)"/>
+      <ellipse cx="42" cy="82" rx="18" ry="26" fill="white" opacity="0.9"/>
+      <ellipse cx="83" cy="76" rx="18" ry="30" fill="white" opacity="0.9"/>
+      <ellipse cx="124" cy="82" rx="18" ry="26" fill="white" opacity="0.9"/>
+    </svg>
+    <div class="card-label"><span>Sunshine</span><div class="card-dot" style="background:var(--lemon)"></div></div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">0+</div>
+    <div class="stat-text">работ в портфолио</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">0 г</div>
+    <div class="stat-text">опыта</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">0%</div>
+    <div class="stat-text">довольных клиентов</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">∞</div>
+    <div class="stat-text">идей для дизайна</div>
+  </div>
+</div>
+
+<!-- Ticker -->
+<!-- Ticker — 4 копии контента, анимация едет на -25% (= ровно 1 сет) -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Маникюр <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Гель-лак <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Наращивание <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Дизайн <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Педикюр <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Укрепление <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Маникюр <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Гель-лак <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Наращивание <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Дизайн <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Педикюр <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Укрепление <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Маникюр <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Гель-лак <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Наращивание <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Дизайн <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Педикюр <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Укрепление <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Маникюр <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Гель-лак <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Наращивание <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Дизайн <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Педикюр <span class="ticker-dot">✦</span></span>
+    <span class="ticker-item">Укрепление <span class="ticker-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     ПОРТФОЛИО — 12 карточек
+     all=12✓ minimal=3✓ art=6✓ french=3✓ gel=3✓ decor=6✓
+══════════════════════════════════ -->
+<section class="portfolio" id="works">
+  <div class="section-head">
+    <div>
+      <span class="section-eyebrow">мои работы</span>
+      <h2 class="section-title">Галерея <span class="hl">идей</span></h2>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Все</button>
+      <button class="filter-btn" data-filter="minimal">Минимализм</button>
+      <button class="filter-btn" data-filter="art">Арт</button>
+      <button class="filter-btn" data-filter="french">Френч</button>
+      <button class="filter-btn" data-filter="gel">Гель</button>
+      <button class="filter-btn" data-filter="decor">Декор</button>
+    </div>
+  </div>
+
+  <div class="works-grid">
+
+    <!-- TAG MAP (all=12 minimal=3 art=6 french=3 gel=3 decor=6)
+    1  minimal gel
+    2  art decor
+    3  french minimal
+    4  decor art
+    5  minimal
+    6  art decor gel
+    7  french gel
+    8  art decor
+    9  french
+    10 art
+    11 art decor
+    12 decor
+    -->
+
+    <!-- 1 · minimal gel -->
+    <div class="work-card" data-tags="minimal gel">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#F9E4EF"/>
+        <ellipse cx="80"  cy="180" rx="38" ry="58" fill="#FF8AC4" opacity="0.85"/>
+        <ellipse cx="150" cy="168" rx="38" ry="66" fill="#FF6BBB" opacity="0.9"/>
+        <ellipse cx="220" cy="180" rx="38" ry="58" fill="#FF8AC4" opacity="0.85"/>
+        <circle cx="150" cy="148" r="12" fill="white" opacity="0.6"/>
+        <circle cx="110" cy="162" r="7"  fill="white" opacity="0.4"/>
+        <circle cx="190" cy="162" r="7"  fill="white" opacity="0.4"/>
+        <text x="150" y="260" text-anchor="middle" fill="#FF8AC4" font-size="28" opacity="0.35">✦ ✦ ✦</text>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Нюдовый розовый</span>
+        <span class="work-tag tag-gel">Гель</span>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="work-card" data-tags="art decor">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#EDE4FF"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="#C9AAFF" opacity="0.9"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="#9B6FFF" opacity="0.85"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="#C9AAFF" opacity="0.9"/>
+        <text x="80"  y="165" text-anchor="middle" fill="white" font-size="20">★</text>
+        <text x="150" y="150" text-anchor="middle" fill="white" font-size="26">★</text>
+        <text x="220" y="165" text-anchor="middle" fill="white" font-size="20">★</text>
+        <circle cx="40"  cy="40"  r="18" fill="#C9AAFF" opacity="0.3"/>
+        <circle cx="260" cy="50"  r="12" fill="#9B6FFF" opacity="0.2"/>
+        <circle cx="260" cy="260" r="22" fill="#C9AAFF" opacity="0.25"/>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Звёздная ночь</span>
+        <span class="work-tag tag-art">Арт</span>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="work-card" data-tags="french minimal">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#F0FBF7"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="#E8F8F3" opacity="1" stroke="#2B1B3A" stroke-width="2"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="#E8F8F3" opacity="1" stroke="#2B1B3A" stroke-width="2"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="#E8F8F3" opacity="1" stroke="#2B1B3A" stroke-width="2"/>
+        <!-- French tips -->
+        <path d="M55 148 Q80 125 105 148" fill="white" stroke="#2B1B3A" stroke-width="1.5"/>
+        <path d="M124 132 Q150 108 176 132" fill="white" stroke="#2B1B3A" stroke-width="1.5"/>
+        <path d="M195 148 Q220 125 245 148" fill="white" stroke="#2B1B3A" stroke-width="1.5"/>
+        <line x1="100" y1="235" x2="200" y2="235" stroke="#7EEAC0" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 4"/>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Классический френч</span>
+        <span class="work-tag tag-french">Френч</span>
+      </div>
+    </div>
+
+    <!-- 4 — высокая карточка -->
+    <div class="work-card" data-tags="decor art">
+      <svg class="work-thumb" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="360" fill="#FFF4DC"/>
+        <ellipse cx="80"  cy="220" rx="36" ry="58" fill="#FFE566" opacity="0.9"/>
+        <ellipse cx="150" cy="205" rx="36" ry="67" fill="#FFCA28" opacity="0.85"/>
+        <ellipse cx="220" cy="220" rx="36" ry="58" fill="#FFE566" opacity="0.9"/>
+        <!-- Цветочки -->
+        <circle cx="150" cy="185" r="6" fill="white"/>
+        <circle cx="140" cy="178" r="5" fill="#FFB300" opacity="0.7"/>
+        <circle cx="160" cy="178" r="5" fill="#FFB300" opacity="0.7"/>
+        <circle cx="143" cy="192" r="5" fill="#FFB300" opacity="0.7"/>
+        <circle cx="157" cy="192" r="5" fill="#FFB300" opacity="0.7"/>
+        <!-- Искры -->
+        <text x="60"  y="80"  text-anchor="middle" fill="#FFB300" font-size="22" opacity="0.6">✦</text>
+        <text x="240" y="100" text-anchor="middle" fill="#FFCA28" font-size="16" opacity="0.5">✦</text>
+        <text x="150" y="310" text-anchor="middle" fill="#FFB300" font-size="30" opacity="0.2">☀</text>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Sunshine Floral</span>
+        <span class="work-tag tag-decor">Декор</span>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="work-card" data-tags="minimal">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#F0FBFB"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="#7EEAC0" opacity="0.75"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="#4DD9A0" opacity="0.8"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="#7EEAC0" opacity="0.75"/>
+        <line x1="63"  y1="158" x2="97"  y2="158" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="133" y1="143" x2="167" y2="143" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="203" y1="158" x2="237" y2="158" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Мятный минимал</span>
+        <span class="work-tag tag-minimal">Минимализм</span>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="work-card" data-tags="art decor gel">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="holo" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"   stop-color="#FFB3D9"/>
+            <stop offset="33%"  stop-color="#C9AAFF"/>
+            <stop offset="66%"  stop-color="#7EEAC0"/>
+            <stop offset="100%" stop-color="#FFE566"/>
+          </linearGradient>
+        </defs>
+        <rect width="300" height="300" fill="#FAF0FF"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="url(#holo)" opacity="0.9"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="url(#holo)" opacity="0.95"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="url(#holo)" opacity="0.9"/>
+        <ellipse cx="80"  cy="180" rx="28" ry="45" fill="white" opacity="0.2"/>
+        <ellipse cx="150" cy="165" rx="28" ry="53" fill="white" opacity="0.2"/>
+        <ellipse cx="220" cy="180" rx="28" ry="45" fill="white" opacity="0.2"/>
+        <text x="150" y="60" text-anchor="middle" fill="#C9AAFF" font-size="22" opacity="0.5">✦ ✦</text>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Голографика</span>
+        <span class="work-tag tag-art">Арт</span>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="work-card" data-tags="french gel">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#FFE9E9"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="#FFB3C1" opacity="0.85"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="#FF8FA3" opacity="0.9"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="#FFB3C1" opacity="0.85"/>
+        <path d="M56 148 Q80 128 104 148" fill="#FF6E6E" opacity="0.7"/>
+        <path d="M124 132 Q150 110 176 132" fill="#FF6E6E" opacity="0.7"/>
+        <path d="M196 148 Q220 128 244 148" fill="#FF6E6E" opacity="0.7"/>
+        <circle cx="150" cy="250" r="5" fill="#FF8FA3" opacity="0.4"/>
+        <circle cx="125" cy="255" r="4" fill="#FFB3C1" opacity="0.3"/>
+        <circle cx="175" cy="255" r="4" fill="#FFB3C1" opacity="0.3"/>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Коралловый френч</span>
+        <span class="work-tag tag-french">Френч</span>
+      </div>
+    </div>
+
+    <!-- 8 — высокая -->
+    <div class="work-card" data-tags="art decor">
+      <svg class="work-thumb" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="360" fill="#1A0A2E"/>
+        <ellipse cx="80"  cy="220" rx="36" ry="58" fill="#C9AAFF" opacity="0.7"/>
+        <ellipse cx="150" cy="205" rx="36" ry="67" fill="#9B6FFF" opacity="0.75"/>
+        <ellipse cx="220" cy="220" rx="36" ry="58" fill="#C9AAFF" opacity="0.7"/>
+        <!-- Звёзды на тёмном -->
+        <circle cx="40"  cy="40"  r="2" fill="white" opacity="0.8"/>
+        <circle cx="80"  cy="70"  r="1.5" fill="white" opacity="0.6"/>
+        <circle cx="200" cy="30"  r="2.5" fill="white" opacity="0.9"/>
+        <circle cx="260" cy="80"  r="1.5" fill="white" opacity="0.5"/>
+        <circle cx="130" cy="50"  r="1"   fill="white" opacity="0.7"/>
+        <circle cx="240" cy="130" r="2"   fill="#C9AAFF" opacity="0.6"/>
+        <circle cx="50"  cy="130" r="1.5" fill="#C9AAFF" opacity="0.5"/>
+        <text x="150" y="340" text-anchor="middle" fill="#C9AAFF" font-size="14" opacity="0.4">✦  ✦  ✦</text>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Ночная галактика</span>
+        <span class="work-tag tag-decor">Декор</span>
+      </div>
+    </div>
+
+    <!-- 9 · french -->
+    <div class="work-card" data-tags="french">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#F5F0FF"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="#E8E0FF" opacity="1" stroke="#2B1B3A" stroke-width="2"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="#E8E0FF" opacity="1" stroke="#2B1B3A" stroke-width="2"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="#E8E0FF" opacity="1" stroke="#2B1B3A" stroke-width="2"/>
+        <path d="M55 148 Q80 125 105 148" fill="#C9AAFF" stroke="#2B1B3A" stroke-width="1.5"/>
+        <path d="M124 132 Q150 108 176 132" fill="#C9AAFF" stroke="#2B1B3A" stroke-width="1.5"/>
+        <path d="M195 148 Q220 125 245 148" fill="#C9AAFF" stroke="#2B1B3A" stroke-width="1.5"/>
+        <circle cx="80"  cy="220" r="4" fill="#C9AAFF" opacity="0.5"/>
+        <circle cx="150" cy="220" r="4" fill="#C9AAFF" opacity="0.5"/>
+        <circle cx="220" cy="220" r="4" fill="#C9AAFF" opacity="0.5"/>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Лиловый бэби-бумер</span>
+        <span class="work-tag tag-french">Френч</span>
+      </div>
+    </div>
+
+    <!-- 10 · art -->
+    <div class="work-card" data-tags="art">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#FFF0F5"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="#FFD6E8" opacity="0.9"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="#FFC2D4" opacity="0.9"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="#FFD6E8" opacity="0.9"/>
+        <!-- Мраморный узор -->
+        <path d="M70 160 Q90 140 110 170 Q130 195 80 200" fill="none" stroke="white" stroke-width="2" opacity="0.7"/>
+        <path d="M140 145 Q165 120 180 155 Q195 185 145 190" fill="none" stroke="white" stroke-width="2" opacity="0.7"/>
+        <path d="M210 160 Q230 138 250 165 Q265 188 212 195" fill="none" stroke="white" stroke-width="2" opacity="0.7"/>
+        <text x="150" y="60" text-anchor="middle" fill="#FF8AC4" font-size="18" opacity="0.4">✦ ✦ ✦</text>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Мраморный розовый</span>
+        <span class="work-tag tag-art">Арт</span>
+      </div>
+    </div>
+
+    <!-- 11 · art decor -->
+    <div class="work-card" data-tags="art decor">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#E8FFF5"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="#B2F0D8" opacity="0.9"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="#7EEAC0" opacity="0.85"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="#B2F0D8" opacity="0.9"/>
+        <!-- Листики -->
+        <ellipse cx="80"  cy="158" rx="8" ry="14" fill="#4DD9A0" transform="rotate(-20 80 158)" opacity="0.8"/>
+        <ellipse cx="150" cy="143" rx="8" ry="14" fill="#4DD9A0" transform="rotate(10 150 143)"  opacity="0.8"/>
+        <ellipse cx="220" cy="158" rx="8" ry="14" fill="#4DD9A0" transform="rotate(-15 220 158)" opacity="0.8"/>
+        <circle cx="55"  cy="60"  r="14" fill="#7EEAC0" opacity="0.2"/>
+        <circle cx="255" cy="55"  r="10" fill="#4DD9A0" opacity="0.2"/>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Ботанический</span>
+        <span class="work-tag tag-decor">Декор</span>
+      </div>
+    </div>
+
+    <!-- 12 · decor -->
+    <div class="work-card" data-tags="decor">
+      <svg class="work-thumb" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="#FFFBE6"/>
+        <ellipse cx="80"  cy="180" rx="36" ry="55" fill="#FFE566" opacity="0.85"/>
+        <ellipse cx="150" cy="165" rx="36" ry="64" fill="#FFD023" opacity="0.9"/>
+        <ellipse cx="220" cy="180" rx="36" ry="55" fill="#FFE566" opacity="0.85"/>
+        <!-- Конфетти-точки -->
+        <circle cx="50"  cy="80"  r="6" fill="#FF8AC4" opacity="0.7"/>
+        <circle cx="120" cy="50"  r="4" fill="#C9AAFF" opacity="0.6"/>
+        <circle cx="200" cy="70"  r="5" fill="#7EEAC0" opacity="0.7"/>
+        <circle cx="260" cy="100" r="4" fill="#FF6E6E" opacity="0.6"/>
+        <circle cx="40"  cy="230" r="5" fill="#C9AAFF" opacity="0.5"/>
+        <circle cx="260" cy="240" r="6" fill="#FF8AC4" opacity="0.5"/>
+        <rect x="130" y="40" width="8" height="8" rx="2" fill="#FF6E6E" opacity="0.5" transform="rotate(20 134 44)"/>
+        <rect x="70"  y="240" width="7" height="7" rx="2" fill="#FFD023" opacity="0.6" transform="rotate(-15 73 243)"/>
+        <text x="150" y="255" text-anchor="middle" fill="#FFB300" font-size="20" opacity="0.3">✦ ✦ ✦</text>
+      </svg>
+      <div class="work-meta">
+        <span class="work-name">Конфетти-party</span>
+        <span class="work-tag tag-decor">Декор</span>
+      </div>
+    </div>
+
+  </div><!-- /works-grid -->
+
+  <div class="portfolio-more">
+    <a href="#contacts" class="btn-sec">Записаться на маникюр ✦</a>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
