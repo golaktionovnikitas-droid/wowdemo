@@ -266,31 +266,26 @@ h1 .accent-mint { background: var(--mint); }
 }
 .stat-text { font-size: 13px; font-weight: 700; color: var(--dark); opacity: 0.6; margin-top: 4px; }
 
-/* ── Ticker — бесшовный ──
-   4 копии в HTML, едем на -25% (= 1 сет).
-   width:max-content + will-change:transform — только GPU.
-── */
+/* ── Ticker — JS управляет дублированием, CSS только стиль ── */
 .ticker-wrap {
   position: relative; z-index: 5;
   background: var(--dark); overflow: hidden; padding: 11px 0;
 }
 .ticker-track {
-  display: flex; width: max-content;
-  animation: ticker-go 28s linear infinite;
+  display: flex;
+  /* ширина и анимация ставятся JS-ом после дублирования */
   will-change: transform;
 }
 .ticker-item {
   display: inline-flex; align-items: center; gap: 16px;
   padding: 0 28px; font-weight: 900; font-size: 14px;
   color: var(--cream); text-transform: uppercase; letter-spacing: 0.5px;
-  white-space: nowrap;
-  /* Не даём браузеру переносить строки и ломать петлю */
-  flex-shrink: 0;
+  white-space: nowrap; flex-shrink: 0;
 }
 .ticker-dot { color: var(--pink); }
 @keyframes ticker-go {
   from { transform: translateX(0); }
-  to   { transform: translateX(-25%); }
+  to   { transform: translateX(-50%); }
 }
 
 /* ── Портфолио ── */

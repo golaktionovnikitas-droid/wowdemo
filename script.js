@@ -21,6 +21,39 @@ document.fonts.ready.then(() => {
 
 
 /* ═══════════════════════════════════════
+   1. TICKER — JS дублирует контент до заполнения
+   Алгоритм: копируем оригинальные items пока
+   суммарная ширина не перекрывает экран × 3,
+   затем анимируем на -50% (= ровно половина трека).
+   Работает на любой ширине, включая узкий мобиль.
+═══════════════════════════════════════ */
+(function initTicker() {
+  const track = document.getElementById('tickerTrack');
+  if (!track) return;
+
+  // Ждём рендера чтобы offsetWidth был точным
+  requestAnimationFrame(() => {
+    const originalItems = Array.from(track.children);
+    const originalWidth = track.scrollWidth;
+    const needed = Math.ceil((window.innerWidth * 3) / originalWidth) + 1;
+
+    // Дублируем нужное количество раз
+    for (let i = 0; i < needed; i++) {
+      originalItems.forEach(item => {
+        track.appendChild(item.cloneNode(true));
+      });
+    }
+
+    // Анимируем на -50% от финальной ширины (= 1 оригинальный сет)
+    const totalWidth = track.scrollWidth;
+    const halfPx     = totalWidth / 2;
+    const duration   = (halfPx / 80).toFixed(0); // ~80px/s
+
+    track.style.animation = `ticker-go ${duration}s linear infinite`;
+  });
+})();
+
+/* ═══════════════════════════════════════
    ФЛАГИ УСТРОЙСТВА
 ═══════════════════════════════════════ */
 const isMobile       = window.matchMedia('(max-width: 900px)').matches;
