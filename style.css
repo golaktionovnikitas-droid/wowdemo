@@ -80,6 +80,43 @@ nav {
 .nav-links a:hover { color: var(--coral); }
 .nav-links a:hover::after { width: 100%; }
 
+/* ── Кнопка записаться в nav ── */
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 900; font-size: 14px;
+  color: var(--dark); text-decoration: none;
+  border: 2.5px solid var(--dark); border-radius: 99px;
+  padding: 8px 20px;
+  position: relative; overflow: hidden;
+  box-shadow: 3px 3px 0 var(--dark);
+  transition: transform 0.15s, box-shadow 0.15s, color 0.2s;
+  z-index: 0;
+}
+/* Анимированная подложка — псевдоэлемент едет снизу */
+.nav-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--pink);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(.22,1,.36,1);
+  z-index: -1;
+}
+/* Мерцающий пульс-контур — привлекает внимание */
+.nav-cta::after {
+  content: '';
+  position: absolute; inset: -4px;
+  border: 2.5px solid var(--pink);
+  border-radius: 99px;
+  opacity: 0;
+  animation: nav-pulse 2.5s ease-in-out infinite;
+}
+@keyframes nav-pulse {
+  0%, 100% { opacity: 0;    transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.06); }
+}
+.nav-cta:hover::before { transform: translateY(0); }
+.nav-cta:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--dark); }
+
 /* ── Burger & mobile menu ── */
 .burger {
   display: none; flex-direction: column; gap: 5px;
@@ -434,6 +471,7 @@ h1 .accent-mint { background: var(--mint); }
 @media (max-width: 900px) {
   nav { padding: 20px 28px; }
   .nav-links { display: none; }
+  .nav-cta   { display: none; }
   .burger { display: flex; }
 
   .hero {
@@ -707,33 +745,40 @@ body.loading { overflow: hidden; }
 /* ── Адаптив обо мне на мобиле ── */
 @media (max-width: 480px) {
   .about { padding: 44px 20px; }
-  .about-inner { gap: 20px; }
+  .about-inner { gap: 0; }
 
-  /* SVG горизонтальный — невысокий прямоугольник */
-  .about-svg { aspect-ratio: 16/9; border-radius: 16px; }
-  .about-card {
-    transform: rotate(-1deg);
-    border-radius: 18px;
+  /* Скрываем SVG-карточку полностью */
+  .about-visual { display: none; }
+
+  /* Мобильный стикер — показываем, встроен в текстовый блок */
+  .about-sticker-mobile {
+    display: inline-flex; flex-direction: column;
+    background: white;
+    border: 2.5px solid var(--dark); border-radius: 14px;
+    box-shadow: 4px 4px 0 var(--dark);
+    padding: 10px 16px;
+    transform: rotate(2deg);
+    width: fit-content;
+    margin-bottom: 4px;
   }
-  .about-sticker {
-    right: -8px; bottom: -16px;
-    padding: 9px 13px;
-  }
-  .about-sticker-stars { font-size: 15px; letter-spacing: 1px; }
-  .about-sticker-label { font-size: 10px; margin-top: 3px; }
+  .about-sticker-stars { font-size: 18px; color: #FFB300; letter-spacing: 2px; line-height: 1; }
+  .about-sticker-label { font-size: 11px; font-weight: 900; color: var(--dark); margin-top: 4px; white-space: nowrap; }
 
   .about-text { gap: 16px; }
   .about-para { font-size: 14px; line-height: 1.6; }
 
-  /* Бейджи: 2 в ряд */
-  .about-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  /* Бейджи — обычный flex wrap, пилюли не квадратные */
+  .about-badges { display: flex; flex-wrap: wrap; gap: 8px; }
   .about-badge {
-    font-size: 12px; padding: 8px 10px;
-    text-align: center; justify-content: center;
-    border-radius: 14px;
+    font-size: 12px; padding: 7px 14px;
+    border-radius: 99px; white-space: nowrap;
+    text-align: left;
   }
 
   .about-ctas { flex-direction: column; gap: 10px; }
   .about-ctas .btn-main,
   .about-ctas .btn-sec { justify-content: center; width: 100%; }
 }
+
+/* Мобильный стикер — скрыт по умолчанию, виден только на телефоне */
+.about-sticker-mobile { display: none; }
