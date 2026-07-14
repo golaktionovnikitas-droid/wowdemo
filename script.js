@@ -1,7 +1,5 @@
 /* ═══════════════════════════════════════
-   ОПРЕДЕЛЯЕМ ВОЗМОЖНОСТИ УСТРОЙСТВА
-   isMobile — отключаем jelly и тяжёлые эффекты
-   prefersReduced — уважаем системные настройки
+   ФЛАГИ УСТРОЙСТВА
 ═══════════════════════════════════════ */
 const isMobile       = window.matchMedia('(max-width: 900px)').matches;
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -34,31 +32,32 @@ if (!isMobile) {
 
 
 /* ═══════════════════════════════════════
-   2. КАРТОЧКИ HERO — пружинное появление
+   2. КАРТОЧКИ HERO — только десктоп
    anim.onfinish → cancel() → inline style
-   чтобы hover работал после анимации
+   чтобы hover-трансформы работали после
 ═══════════════════════════════════════ */
 if (!isMobile) {
-  const baseRots   = [-4, 3.5, 2, -3];
-  const heroCards  = document.querySelectorAll('.hero-right .sticker-card');
+  const baseRots  = [-4, 3.5, 2, -3];
+  const heroCards = document.querySelectorAll('.hero-right .sticker-card');
 
   heroCards.forEach((card, i) => {
     const rot = baseRots[i];
     card.style.opacity   = '0';
-    card.style.transform = `rotate(${rot}deg) translateY(40px) scale(0.88)`;
+    card.style.transform = `rotate(${rot}deg) translateY(36px) scale(0.9)`;
 
     setTimeout(() => {
+      const dur  = prefersReduced ? 0 : 550;
       const anim = card.animate([
-        { opacity: 0, transform: `rotate(${rot}deg) translateY(40px) scale(0.88)` },
-        { opacity: 1, transform: `rotate(${rot}deg) translateY(0) scale(1.04)` },
+        { opacity: 0, transform: `rotate(${rot}deg) translateY(36px) scale(0.9)` },
+        { opacity: 1, transform: `rotate(${rot}deg) translateY(0) scale(1.03)` },
         { opacity: 1, transform: `rotate(${rot}deg) translateY(0) scale(1)` }
-      ], { duration: prefersReduced ? 0 : 600, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'forwards' });
+      ], { duration: dur, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'forwards' });
 
       anim.onfinish = () => {
         anim.cancel();
         card.style.opacity   = '1';
         card.style.transform = `rotate(${rot}deg)`;
-        // вешаем hover только после завершения появления
+
         card.addEventListener('mouseenter', () => {
           card.style.transition = 'transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s';
           card.style.transform  = `rotate(0deg) translateY(-8px) scale(1.05)`;
@@ -70,64 +69,46 @@ if (!isMobile) {
           card.style.boxShadow  = '6px 6px 0 #2B1B3A';
         });
       };
-    }, prefersReduced ? 0 : 800 + i * 130);
+    }, prefersReduced ? 0 : 700 + i * 120);
   });
 }
 
 
 /* ═══════════════════════════════════════
-   3. ЖЕЛЕ на акцентах — только десктоп
-   passive:true на mousemove = не блокирует скролл
+   3. ЖЕЛЕ — только десктоп, passive listener
 ═══════════════════════════════════════ */
 if (!isMobile && !prefersReduced) {
-  const accentPink = document.querySelector('h1 .accent-pink');
-  const accentMint = document.querySelector('h1 .accent-mint');
+  const apEl = document.querySelector('h1 .accent-pink');
+  const amEl = document.querySelector('h1 .accent-mint');
 
-  const jelly = {
-    pink: { cx: 0, cy: 0, tx: 0, ty: 0, baseRot: -1   },
-    mint: { cx: 0, cy: 0, tx: 0, ty: 0, baseRot:  1.2  },
+  const J = {
+    pink: { cx:0, cy:0, tx:0, ty:0, base:-1   },
+    mint: { cx:0, cy:0, tx:0, ty:0, base: 1.2  },
   };
-  const RADIUS   = 220;
-  const STRENGTH = 0.26;
-  const LERP     = 0.07;
+  const R=220, S=0.26, L=0.07;
 
-  function elCenter(el) {
-    const r = el.getBoundingClientRect();
-    return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-  }
+  let mx=0, my=0;
+  document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; }, { passive:true });
 
-  let mx = 0, my = 0;
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-  }, { passive: true });
-
-  let jellyRAF = null;
-  function jellyLoop() {
-    [['pink', accentPink], ['mint', accentMint]].forEach(([k, el]) => {
+  let raf;
+  function loop() {
+    [[J.pink, apEl],[J.mint, amEl]].forEach(([s, el]) => {
       if (!el) return;
-      const c    = elCenter(el);
-      const dx   = mx - c.x, dy = my - c.y;
-      const dist = Math.hypot(dx, dy);
-      const s    = jelly[k];
-
-      s.tx = dist < RADIUS ? dx * (1 - dist / RADIUS) * STRENGTH : 0;
-      s.ty = dist < RADIUS ? dy * (1 - dist / RADIUS) * STRENGTH : 0;
-      s.cx += (s.tx - s.cx) * LERP;
-      s.cy += (s.ty - s.cy) * LERP;
-
-      // Пропускаем рендер если смещение незначительное (< 0.1px)
-      if (Math.abs(s.cx) > 0.1 || Math.abs(s.cy) > 0.1 || Math.abs(s.tx) > 0.1) {
-        el.style.transform = `rotate(${s.baseRot + s.cx * 0.055}deg) translate(${s.cx}px, ${s.cy}px)`;
-      }
+      const r  = el.getBoundingClientRect();
+      const dx = mx-(r.left+r.width/2), dy = my-(r.top+r.height/2);
+      const d  = Math.hypot(dx,dy);
+      s.tx = d<R ? dx*(1-d/R)*S : 0;
+      s.ty = d<R ? dy*(1-d/R)*S : 0;
+      s.cx += (s.tx-s.cx)*L;
+      s.cy += (s.ty-s.cy)*L;
+      if (Math.abs(s.cx)>0.08 || Math.abs(s.cy)>0.08 || d<R)
+        el.style.transform = `rotate(${s.base+s.cx*0.055}deg) translate(${s.cx}px,${s.cy}px)`;
     });
-    jellyRAF = requestAnimationFrame(jellyLoop);
+    raf = requestAnimationFrame(loop);
   }
-  jellyLoop();
-
-  // Останавливаем rAF когда страница в фоне
+  loop();
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) cancelAnimationFrame(jellyRAF);
-    else jellyLoop();
+    if (document.hidden) cancelAnimationFrame(raf); else loop();
   });
 }
 
@@ -137,75 +118,77 @@ if (!isMobile && !prefersReduced) {
 ═══════════════════════════════════════ */
 const statsEl  = document.querySelector('.stats');
 const statData = [
-  { end: 200, suffix: '+' },
-  { end: 3,   suffix: ' г' },
-  { end: 98,  suffix: '%' },
-  { end: null },
+  { end:200, suffix:'+' },
+  { end:3,   suffix:' г' },
+  { end:98,  suffix:'%' },
+  { end:null },
 ];
 
-function animCount(el, end, suffix, dur = 900) {
-  if (prefersReduced) { el.textContent = end + suffix; return; }
-  const t0 = performance.now();
-  (function step(now) {
-    const p    = Math.min((now - t0) / dur, 1);
-    const ease = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-    el.textContent = Math.round(ease * end) + suffix;
-    if (p < 1) requestAnimationFrame(step);
+function animCount(el, end, suffix) {
+  if (prefersReduced) { el.textContent = end+suffix; return; }
+  const t0=performance.now(), dur=850;
+  (function step(now){
+    const p=Math.min((now-t0)/dur,1);
+    const e=1-Math.pow(2,-10*p);
+    el.textContent=Math.round(e*end)+suffix;
+    if(p<1) requestAnimationFrame(step);
   })(t0);
 }
 
-let statsAnimated = false;
-new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting && !statsAnimated) {
-    statsAnimated = true;
+let statsHit=false;
+new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting && !statsHit){
+    statsHit=true;
     statsEl.classList.add('in-view');
-    document.querySelectorAll('.stat-item').forEach((item, i) => {
-      const d = statData[i];
-      if (d.end !== null)
-        setTimeout(() => animCount(item.querySelector('.stat-num'), d.end, d.suffix), i * 120);
+    document.querySelectorAll('.stat-item').forEach((item,i)=>{
+      const d=statData[i];
+      if(d.end!==null)
+        setTimeout(()=>animCount(item.querySelector('.stat-num'),d.end,d.suffix), i*110);
     });
   }
-}, { threshold: 0.3 }).observe(statsEl);
+},{threshold:0.25}).observe(statsEl);
 
 
 /* ═══════════════════════════════════════
-   5. ПОРТФОЛИО — фильтры
+   5. ПОРТФОЛИО — stagger через data-delay,
+   надёжно работает в columns layout
 ═══════════════════════════════════════ */
-const filterBtns = document.querySelectorAll('.filter-btn');
-const workCards  = document.querySelectorAll('.work-card');
+const workCards = document.querySelectorAll('.work-card');
 
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
+// Расставляем data-delay по колонкам: 0,1,2,0,1,2...
+workCards.forEach((card,i) => card.setAttribute('data-delay', i%6));
+
+// Scroll-reveal — порог ниже чтобы карточка показалась раньше
+const workObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in-view');
+      workObs.unobserve(e.target);
+    }
+  });
+},{threshold: isMobile ? 0.05 : 0.1, rootMargin:'0px 0px -20px 0px'});
+workCards.forEach(c=>workObs.observe(c));
+
+// Фильтры
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
-    const tag = btn.dataset.filter;
-    let visIdx = 0;
-    workCards.forEach(card => {
-      const match = tag === 'all' || card.dataset.tags.includes(tag);
-      if (match) {
-        card.style.display = '';
-        if (!prefersReduced) {
-          card.animate(
-            [{ opacity: 0, transform: 'translateY(14px) scale(0.97)' },
-             { opacity: 1, transform: 'translateY(0) scale(1)' }],
-            { duration: 320, delay: visIdx * 35, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'forwards' }
-          );
-        }
-        visIdx++;
-      } else {
-        card.style.display = 'none';
+    const tag=btn.dataset.filter;
+    let vi=0;
+    workCards.forEach(card=>{
+      const match=tag==='all'||card.dataset.tags.includes(tag);
+      card.style.display=match?'':'none';
+      if(match && !prefersReduced){
+        card.animate(
+          [{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],
+          {duration:300, delay:vi*30, easing:'cubic-bezier(.22,1,.36,1)', fill:'forwards'}
+        );
+        vi++;
       }
     });
   });
 });
-
-/* Scroll-reveal карточек портфолио */
-const workObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in-view'); workObs.unobserve(e.target); }
-  });
-}, { threshold: 0.12 });
-workCards.forEach(c => workObs.observe(c));
 
 
 /* ═══════════════════════════════════════
@@ -215,15 +198,15 @@ const burger     = document.querySelector('.burger');
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuClose  = document.querySelector('.mobile-menu-close');
 
-function closeMenu() {
+function closeMenu(){
   burger?.classList.remove('open');
   mobileMenu?.classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
-burger?.addEventListener('click', () => {
+burger?.addEventListener('click',()=>{
   burger.classList.toggle('open');
   mobileMenu.classList.toggle('open');
-  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':'';
 });
-menuClose?.addEventListener('click', closeMenu);
-mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+menuClose?.addEventListener('click',closeMenu);
+mobileMenu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
