@@ -1,4 +1,11 @@
 /* ═══════════════════════════════════════
+   ФЛАГИ УСТРОЙСТВА — объявляем первыми!
+═══════════════════════════════════════ */
+const isMobile       = window.matchMedia('(max-width: 900px)').matches;
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+/* ═══════════════════════════════════════
    0. ЭКРАН ЗАГРУЗКИ
    document.fonts.ready — ждём реально шрифты,
    но не дольше 2.5с (fallback таймер)
@@ -22,42 +29,50 @@ document.fonts.ready.then(() => {
 
 /* ═══════════════════════════════════════
    1. TICKER — RAF-анимация, абсолютно бесшовная
-   Дублируем items до ширины > 2×экран,
+   Клонируем оригинальные items один раз,
    двигаем через translateX на каждый кадр,
-   сбрасываем когда прошли ровно половину трека.
+   сбрасываем когда прошли ровно ширину оригинала.
 ═══════════════════════════════════════ */
 (function initTicker() {
   const track = document.getElementById('tickerTrack');
   if (!track || prefersReduced) return;
 
-  // Даём браузеру один кадр чтобы посчитать реальную ширину
+  // Ждём layout, чтобы браузер посчитал реальную ширину
   requestAnimationFrame(() => {
-    const items = Array.from(track.children);
-    // Дублируем пока ширина трека не превышает экран × 4 — запас для любого устройства
-    while (track.scrollWidth < window.innerWidth * 4) {
-      items.forEach(item => track.appendChild(item.cloneNode(true)));
-    }
+    requestAnimationFrame(() => {
+      const originalItems = Array.from(track.children);
+      const originalCount = originalItems.length;
 
-    // Половина трека — это один полный цикл
-    const loopWidth = track.scrollWidth / 2;
-    let x = 0;
-    const speed = 0.6; // px за кадр (~36px/s на 60fps)
+      // Дублируем пока трек не перекрывает экран минимум в 3 раза
+      while (track.scrollWidth < window.innerWidth * 3) {
+        originalItems.forEach(item => track.appendChild(item.cloneNode(true)));
+      }
 
-    function step() {
-      x += speed;
-      if (x >= loopWidth) x -= loopWidth; // сброс — мгновенный, без прыжка
-      track.style.transform = `translateX(${-x}px)`;
+      // Ширина одного полного набора оригинальных элементов
+      // (суммируем только первые originalCount детей после layout)
+      let singleSetWidth = 0;
+      Array.from(track.children).slice(0, originalCount).forEach(el => {
+        singleSetWidth += el.getBoundingClientRect().width;
+      });
+
+      // Если ширина ещё не посчиталась — fallback через scrollWidth
+      if (singleSetWidth === 0) {
+        singleSetWidth = track.scrollWidth / Math.floor(track.children.length / originalCount);
+      }
+
+      let x = 0;
+      const speed = 0.6; // px за кадр (~36px/s на 60fps)
+
+      function step() {
+        x += speed;
+        if (x >= singleSetWidth) x -= singleSetWidth; // сброс без прыжка
+        track.style.transform = `translateX(${-x}px)`;
+        requestAnimationFrame(step);
+      }
       requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+    });
   });
 })();
-
-/* ═══════════════════════════════════════
-   ФЛАГИ УСТРОЙСТВА
-═══════════════════════════════════════ */
-const isMobile       = window.matchMedia('(max-width: 900px)').matches;
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
 /* ═══════════════════════════════════════
@@ -70,7 +85,6 @@ if (!isMobile) {
     document.body.style.cursor = `url("data:image/svg+xml,${svg}") 4 2, auto`;
   }
   const cursorMap = [
-    ['.sticker-card', '#C9AAFF'],
     ['.btn-main',     '#FF6E6E'],
     ['.btn-sec',      '#FFE566'],
     ['.stat-item',    '#7EEAC0'],
@@ -87,53 +101,8 @@ if (!isMobile) {
 
 
 /* ═══════════════════════════════════════
-   2. КАРТОЧКИ HERO — только десктоп
-   anim.onfinish → cancel() → inline style
-   чтобы hover-трансформы работали после
+   2. КАРТОЧКИ HERO — удалены
 ═══════════════════════════════════════ */
-// Страховка: на мобиле явно скрываем hero-right через JS
-// (на случай если CSS не успел применить display:none)
-const heroRightEl = document.getElementById('heroRight');
-if (isMobile && heroRightEl) {
-  heroRightEl.style.display = 'none';
-}
-
-if (!isMobile) {
-  const baseRots  = [-4, 3.5, 2, -3];
-  const heroCards = document.querySelectorAll('.hero-right .sticker-card');
-
-  heroCards.forEach((card, i) => {
-    const rot = baseRots[i];
-    card.style.opacity   = '0';
-    card.style.transform = `rotate(${rot}deg) translateY(36px) scale(0.9)`;
-
-    setTimeout(() => {
-      const dur  = prefersReduced ? 0 : 550;
-      const anim = card.animate([
-        { opacity: 0, transform: `rotate(${rot}deg) translateY(36px) scale(0.9)` },
-        { opacity: 1, transform: `rotate(${rot}deg) translateY(0) scale(1.03)` },
-        { opacity: 1, transform: `rotate(${rot}deg) translateY(0) scale(1)` }
-      ], { duration: dur, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'forwards' });
-
-      anim.onfinish = () => {
-        anim.cancel();
-        card.style.opacity   = '1';
-        card.style.transform = `rotate(${rot}deg)`;
-
-        card.addEventListener('mouseenter', () => {
-          card.style.transition = 'transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s';
-          card.style.transform  = `rotate(0deg) translateY(-8px) scale(1.05)`;
-          card.style.boxShadow  = '10px 10px 0 #2B1B3A';
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transition = 'transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s';
-          card.style.transform  = `rotate(${rot}deg)`;
-          card.style.boxShadow  = '6px 6px 0 #2B1B3A';
-        });
-      };
-    }, prefersReduced ? 0 : 700 + i * 120);
-  });
-}
 
 
 /* ═══════════════════════════════════════
@@ -224,7 +193,7 @@ workCards.forEach((card,i) => {
   card.setAttribute('data-delay', delay);
 });
 
-// Scroll-reveal — порог ниже чтобы карточка показалась раньше
+// Scroll-reveal — очень щедрый rootMargin чтобы карточки успевали появиться
 const workObs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
@@ -232,8 +201,19 @@ const workObs = new IntersectionObserver(entries=>{
       workObs.unobserve(e.target);
     }
   });
-},{threshold: isMobile ? 0.05 : 0.1, rootMargin:'0px 0px -20px 0px'});
+},{threshold: 0, rootMargin:'0px 0px 60px 0px'});
 workCards.forEach(c=>workObs.observe(c));
+
+// Страховка: если карточки уже в viewport при загрузке — показываем сразу
+// (актуально когда пользователь перезагружает страницу с якорем #works)
+setTimeout(() => {
+  workCards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 60) {
+      card.classList.add('in-view');
+    }
+  });
+}, 100);
 
 // Фильтры
 document.querySelectorAll('.filter-btn').forEach(btn=>{
