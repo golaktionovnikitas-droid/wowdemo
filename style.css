@@ -770,9 +770,8 @@ body.loading { overflow: hidden; }
   /* Бейджи — обычный flex wrap, пилюли не квадратные */
   .about-badges { display: flex; flex-wrap: wrap; gap: 8px; }
   .about-badge {
-    font-size: 12px; padding: 7px 14px;
+    font-size: 12px; padding: 8px 16px;
     border-radius: 99px; white-space: nowrap;
-    text-align: left;
   }
 
   .about-ctas { flex-direction: column; gap: 10px; }
