@@ -85,6 +85,7 @@ if (!isMobile) {
     document.body.style.cursor = `url("data:image/svg+xml,${svg}") 4 2, auto`;
   }
   const cursorMap = [
+    ['.sticker-card', '#C9AAFF'],
     ['.btn-main',     '#FF6E6E'],
     ['.btn-sec',      '#FFE566'],
     ['.stat-item',    '#7EEAC0'],
@@ -101,8 +102,46 @@ if (!isMobile) {
 
 
 /* ═══════════════════════════════════════
-   2. КАРТОЧКИ HERO — удалены
+   2. КАРТОЧКИ HERO — только десктоп
+   anim.onfinish → cancel() → inline style
+   чтобы hover-трансформы работали после
 ═══════════════════════════════════════ */
+if (!isMobile) {
+  const baseRots  = [-4, 3.5, 2, -3];
+  const heroCards = document.querySelectorAll('.hero-right .sticker-card');
+
+  heroCards.forEach((card, i) => {
+    const rot = baseRots[i];
+    card.style.opacity   = '0';
+    card.style.transform = `rotate(${rot}deg) translateY(36px) scale(0.9)`;
+
+    setTimeout(() => {
+      const dur  = prefersReduced ? 0 : 550;
+      const anim = card.animate([
+        { opacity: 0, transform: `rotate(${rot}deg) translateY(36px) scale(0.9)` },
+        { opacity: 1, transform: `rotate(${rot}deg) translateY(0) scale(1.03)` },
+        { opacity: 1, transform: `rotate(${rot}deg) translateY(0) scale(1)` }
+      ], { duration: dur, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'forwards' });
+
+      anim.onfinish = () => {
+        anim.cancel();
+        card.style.opacity   = '1';
+        card.style.transform = `rotate(${rot}deg)`;
+
+        card.addEventListener('mouseenter', () => {
+          card.style.transition = 'transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s';
+          card.style.transform  = `rotate(0deg) translateY(-8px) scale(1.05)`;
+          card.style.boxShadow  = '10px 10px 0 #2B1B3A';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transition = 'transform 0.4s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s';
+          card.style.transform  = `rotate(${rot}deg)`;
+          card.style.boxShadow  = '6px 6px 0 #2B1B3A';
+        });
+      };
+    }, prefersReduced ? 0 : 700 + i * 120);
+  });
+}
 
 
 /* ═══════════════════════════════════════

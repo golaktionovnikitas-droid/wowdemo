@@ -113,11 +113,12 @@ nav {
 /* ── Hero ── */
 .hero {
   position: relative; z-index: 5;
-  display: flex; flex-direction: column; justify-content: center;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center;
   min-height: calc(100vh - 88px);
-  padding: 0 48px 64px;
+  padding: 0 48px 48px; gap: 40px;
 }
-.hero-left { display: flex; flex-direction: column; gap: 28px; max-width: 680px; }
+.hero-left { display: flex; flex-direction: column; gap: 28px; }
 
 .tag {
   display: inline-flex; align-items: center; gap: 8px;
@@ -202,12 +203,20 @@ h1 .accent-mint { background: var(--mint); }
 }
 .btn-sec:hover { background: var(--lemon); transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--dark); }
 
-/* ── Sticker cards (полностью убраны) ── */
-.hero-right { display: none !important; }
-.cards-scroll { display: none !important; }
+/* ── Sticker cards (desktop only) ── */
+.hero-right { position: relative; height: 520px; }
+.sticker-card {
+  position: absolute; background: white;
+  border: 3px solid var(--dark); border-radius: 20px;
+  overflow: hidden; box-shadow: 6px 6px 0 var(--dark); opacity: 0;
+}
+.card-1 { width: 200px; height: 220px; top: 0;       left: 60px;  }
+.card-2 { width: 175px; height: 195px; top: 30px;    right: 40px; }
+.card-3 { width: 220px; height: 200px; bottom: 50px; left: 20px;  }
+.card-4 { width: 165px; height: 180px; bottom: 30px; right: 30px; }
 
-/* Заглушка чтобы не сломать остальной CSS */
-.cards-scroll-hidden {
+/* Мобильный горизонтальный скролл — скрыт по умолчанию */
+.cards-scroll {
   display: none;
   overflow-x: auto;
 }
@@ -354,9 +363,12 @@ h1 .accent-mint { background: var(--mint); }
   .burger { display: flex; }
 
   .hero {
+    grid-template-columns: 1fr;
     min-height: auto;
     padding: 24px 28px 40px;
+    gap: 0;
   }
+  .hero-right { display: none !important; }
 
   h1 { font-size: clamp(36px, 7vw, 54px); }
   .subhead { font-size: 16px; max-width: 100%; }
