@@ -171,8 +171,7 @@ if (!isMobile && !prefersReduced) {
       s.ty = d<R ? dy*(1-d/R)*S : 0;
       s.cx += (s.tx-s.cx)*L;
       s.cy += (s.ty-s.cy)*L;
-      if (Math.abs(s.cx)>0.08 || Math.abs(s.cy)>0.08 || d<R)
-        el.style.transform = `rotate(${s.base+s.cx*0.055}deg) translate(${s.cx}px,${s.cy}px)`;
+      el.style.transform = `rotate(${s.base+s.cx*0.055}deg) translate(${s.cx}px,${s.cy}px)`;
     });
     raf = requestAnimationFrame(loop);
   }
