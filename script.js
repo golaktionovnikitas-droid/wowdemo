@@ -334,3 +334,9 @@ const aboutObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px 40px 0px' });
 aboutEls.forEach(el => aboutObs.observe(el));
+
+// На мобиле CSS уже сбрасывает transform через !important,
+// но добавляем in-view сразу чтобы не было задержки
+if (isMobile) {
+  document.querySelectorAll('.about-text').forEach(el => el.classList.add('in-view'));
+}

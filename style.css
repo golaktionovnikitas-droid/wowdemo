@@ -745,12 +745,26 @@ body.loading { overflow: hidden; }
 /* ── Адаптив обо мне на мобиле ── */
 @media (max-width: 480px) {
   .about { padding: 44px 20px; }
-  .about-inner { gap: 0; }
+
+  /* Одна колонка, полная ширина */
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    width: 100%;
+  }
 
   /* Скрываем SVG-карточку полностью */
-  .about-visual { display: none; }
+  .about-visual { display: none !important; }
 
-  /* Мобильный стикер — показываем, встроен в текстовый блок */
+  /* about-text занимает всю ширину, сбрасываем все трансформы */
+  .about-text {
+    width: 100%;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Мобильный стикер */
   .about-sticker-mobile {
     display: inline-flex; flex-direction: column;
     background: white;
@@ -772,20 +786,20 @@ body.loading { overflow: hidden; }
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+    width: 100%;
   }
   .about-badge {
     font-size: 12px; padding: 10px 14px;
     border-radius: 99px; white-space: nowrap;
-    text-align: center; justify-content: center;
-    display: flex; align-items: center; gap: 6px;
+    text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
   }
-  /* 3-й и 4-й бейдж — каждый на всю строку */
   .about-badge:nth-child(3),
   .about-badge:nth-child(4) {
     grid-column: 1 / -1;
   }
 
-  .about-ctas { flex-direction: column; gap: 10px; }
+  .about-ctas { flex-direction: column; gap: 10px; width: 100%; }
   .about-ctas .btn-main,
   .about-ctas .btn-sec { justify-content: center; width: 100%; }
 }
