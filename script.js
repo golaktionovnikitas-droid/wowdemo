@@ -294,3 +294,43 @@ burger?.addEventListener('click',()=>{
 });
 menuClose?.addEventListener('click',closeMenu);
 mobileMenu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+
+/* ═══════════════════════════════════════
+   7. SCROLL-REVEAL: УСЛУГИ
+═══════════════════════════════════════ */
+const svcCards = document.querySelectorAll('.svc-card');
+svcCards.forEach((card, i) => card.setAttribute('data-delay', i));
+
+const svcObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      svcObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0, rootMargin: '0px 0px 60px 0px' });
+svcCards.forEach(c => svcObs.observe(c));
+
+// Страховка для видимых при загрузке
+setTimeout(() => {
+  svcCards.forEach(card => {
+    if (card.getBoundingClientRect().top < window.innerHeight + 60)
+      card.classList.add('in-view');
+  });
+}, 100);
+
+
+/* ═══════════════════════════════════════
+   8. SCROLL-REVEAL: ОБО МНЕ
+═══════════════════════════════════════ */
+const aboutEls = document.querySelectorAll('.about-visual, .about-text');
+
+const aboutObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      aboutObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px 40px 0px' });
+aboutEls.forEach(el => aboutObs.observe(el));

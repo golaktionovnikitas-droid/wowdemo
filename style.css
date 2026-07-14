@@ -368,11 +368,6 @@ h1 .accent-mint { background: var(--mint); }
   box-shadow: 5px 5px 0 var(--dark);
   display: flex; flex-direction: column;
   overflow: hidden;
-  transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.2s;
-}
-.svc-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 8px 11px 0 var(--dark);
 }
 
 .svc-top { padding: 24px 24px 18px; display: flex; flex-direction: column; gap: 10px; }
@@ -653,4 +648,80 @@ body.loading { overflow: hidden; }
 
 .about-ctas {
   display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+
+/* ── Hover на бейджах обо мне ── */
+.about-badge {
+  transition: transform 0.2s cubic-bezier(.34,1.56,.64,1), background 0.2s, box-shadow 0.2s;
+}
+.about-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: 4px 7px 0 var(--dark);
+}
+.about-badge:nth-child(1):hover { background: var(--mint); }
+.about-badge:nth-child(2):hover { background: var(--lemon); }
+.about-badge:nth-child(3):hover { background: var(--lilac); }
+.about-badge:nth-child(4):hover { background: var(--pink); }
+
+/* ── Scroll-reveal: услуги ── */
+.svc-card {
+  opacity: 0;
+  transform: translateY(28px);
+}
+.svc-card.in-view {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s cubic-bezier(.22,1,.36,1),
+              transform 0.5s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.2s;
+}
+.svc-card.in-view:hover {
+  transform: translateY(-6px);
+  box-shadow: 8px 11px 0 var(--dark);
+}
+.svc-card[data-delay="1"] { transition-delay: 0.1s; }
+.svc-card[data-delay="2"] { transition-delay: 0.2s; }
+
+/* ── Scroll-reveal: обо мне ── */
+.about-visual {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.65s cubic-bezier(.22,1,.36,1),
+              transform 0.65s cubic-bezier(.22,1,.36,1);
+}
+.about-visual.in-view { opacity: 1; transform: translateX(0); }
+
+.about-text {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.65s 0.15s cubic-bezier(.22,1,.36,1),
+              transform 0.65s 0.15s cubic-bezier(.22,1,.36,1);
+}
+.about-text.in-view { opacity: 1; transform: translateX(0); }
+
+/* на мобиле — обе части снизу вверх, не горизонтально */
+@media (max-width: 900px) {
+  .about-visual { transform: translateY(28px); }
+  .about-text   { transform: translateY(28px); }
+  .about-visual.in-view { transform: translateY(0); }
+  .about-text.in-view   { transform: translateY(0); }
+}
+
+/* ── Адаптив обо мне на мобиле ── */
+@media (max-width: 480px) {
+  .about-inner  { gap: 28px; }
+  .about-card   { transform: rotate(-1deg); }
+  .about-sticker {
+    right: -8px; bottom: -14px;
+    padding: 10px 14px;
+  }
+  .about-sticker-stars { font-size: 16px; }
+  .about-sticker-label { font-size: 10px; }
+  .about-text   { gap: 18px; }
+  .about-para   { font-size: 14px; }
+  .about-badge  { font-size: 12px; padding: 6px 12px; }
+  .about-badges { gap: 8px; }
+  .about-ctas   { flex-direction: column; }
+  .about-ctas .btn-main,
+  .about-ctas .btn-sec  { justify-content: center; width: 100%; }
 }
