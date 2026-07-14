@@ -460,9 +460,13 @@ h1 .accent-mint { background: var(--mint); }
   .services-grid { grid-template-columns: 1fr; gap: 16px; }
 
   .about { padding: 60px 28px; }
-  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  /* SVG-карточка горизонтальная на планшете */
   .about-card { transform: rotate(-1deg); }
-  .about-sticker { right: -12px; bottom: -16px; }
+  .about-sticker { right: -10px; bottom: -14px; }
 
   /* Grid вместо columns — ряды выровнены, нет дыр */
   .works-grid {
@@ -518,13 +522,6 @@ h1 .accent-mint { background: var(--mint); }
   .section-title { font-size: 26px; }
   .filter-btn { font-size: 11px; padding: 6px 12px; }
   .filters { gap: 7px; }
-
-  .about { padding: 44px 20px; }
-  .about-para { font-size: 15px; }
-  .about-badge { font-size: 12px; padding: 6px 13px; }
-  .about-sticker-stars { font-size: 17px; }
-  .about-ctas { flex-direction: column; align-items: stretch; }
-  .about-ctas .btn-main, .about-ctas .btn-sec { justify-content: center; }
 }
 
 
@@ -709,19 +706,34 @@ body.loading { overflow: hidden; }
 
 /* ── Адаптив обо мне на мобиле ── */
 @media (max-width: 480px) {
-  .about-inner  { gap: 28px; }
-  .about-card   { transform: rotate(-1deg); }
-  .about-sticker {
-    right: -8px; bottom: -14px;
-    padding: 10px 14px;
+  .about { padding: 44px 20px; }
+  .about-inner { gap: 20px; }
+
+  /* SVG горизонтальный — невысокий прямоугольник */
+  .about-svg { aspect-ratio: 16/9; border-radius: 16px; }
+  .about-card {
+    transform: rotate(-1deg);
+    border-radius: 18px;
   }
-  .about-sticker-stars { font-size: 16px; }
-  .about-sticker-label { font-size: 10px; }
-  .about-text   { gap: 18px; }
-  .about-para   { font-size: 14px; }
-  .about-badge  { font-size: 12px; padding: 6px 12px; }
-  .about-badges { gap: 8px; }
-  .about-ctas   { flex-direction: column; }
+  .about-sticker {
+    right: -8px; bottom: -16px;
+    padding: 9px 13px;
+  }
+  .about-sticker-stars { font-size: 15px; letter-spacing: 1px; }
+  .about-sticker-label { font-size: 10px; margin-top: 3px; }
+
+  .about-text { gap: 16px; }
+  .about-para { font-size: 14px; line-height: 1.6; }
+
+  /* Бейджи: 2 в ряд */
+  .about-badges { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .about-badge {
+    font-size: 12px; padding: 8px 10px;
+    text-align: center; justify-content: center;
+    border-radius: 14px;
+  }
+
+  .about-ctas { flex-direction: column; gap: 10px; }
   .about-ctas .btn-main,
-  .about-ctas .btn-sec  { justify-content: center; width: 100%; }
+  .about-ctas .btn-sec { justify-content: center; width: 100%; }
 }
