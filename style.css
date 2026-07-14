@@ -767,11 +767,22 @@ body.loading { overflow: hidden; }
   .about-text { gap: 16px; }
   .about-para { font-size: 14px; line-height: 1.6; }
 
-  /* Бейджи — обычный flex wrap, пилюли не квадратные */
-  .about-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  /* Бейджи: первая строка 2 штуки, остальные по 1 на всю ширину */
+  .about-badges {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
   .about-badge {
-    font-size: 12px; padding: 8px 16px;
+    font-size: 12px; padding: 10px 14px;
     border-radius: 99px; white-space: nowrap;
+    text-align: center; justify-content: center;
+    display: flex; align-items: center; gap: 6px;
+  }
+  /* 3-й и 4-й бейдж — каждый на всю строку */
+  .about-badge:nth-child(3),
+  .about-badge:nth-child(4) {
+    grid-column: 1 / -1;
   }
 
   .about-ctas { flex-direction: column; gap: 10px; }
