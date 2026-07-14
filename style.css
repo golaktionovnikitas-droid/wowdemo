@@ -273,8 +273,7 @@ h1 .accent-mint { background: var(--mint); }
 }
 .ticker-track {
   display: flex;
-  /* ширина и анимация ставятся JS-ом после дублирования */
-  will-change: transform;
+  /* transform управляется RAF в script.js */
 }
 .ticker-item {
   display: inline-flex; align-items: center; gap: 16px;
@@ -283,10 +282,6 @@ h1 .accent-mint { background: var(--mint); }
   white-space: nowrap; flex-shrink: 0;
 }
 .ticker-dot { color: var(--pink); }
-@keyframes ticker-go {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
 
 /* ── Портфолио ── */
 .portfolio { position: relative; z-index: 5; padding: 80px 48px; }

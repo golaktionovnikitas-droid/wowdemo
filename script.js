@@ -21,35 +21,35 @@ document.fonts.ready.then(() => {
 
 
 /* ═══════════════════════════════════════
-   1. TICKER — JS дублирует контент до заполнения
-   Алгоритм: копируем оригинальные items пока
-   суммарная ширина не перекрывает экран × 3,
-   затем анимируем на -50% (= ровно половина трека).
-   Работает на любой ширине, включая узкий мобиль.
+   1. TICKER — RAF-анимация, абсолютно бесшовная
+   Дублируем items до ширины > 2×экран,
+   двигаем через translateX на каждый кадр,
+   сбрасываем когда прошли ровно половину трека.
 ═══════════════════════════════════════ */
 (function initTicker() {
   const track = document.getElementById('tickerTrack');
-  if (!track) return;
+  if (!track || prefersReduced) return;
 
-  // Ждём рендера чтобы offsetWidth был точным
+  // Даём браузеру один кадр чтобы посчитать реальную ширину
   requestAnimationFrame(() => {
-    const originalItems = Array.from(track.children);
-    const originalWidth = track.scrollWidth;
-    const needed = Math.ceil((window.innerWidth * 3) / originalWidth) + 1;
-
-    // Дублируем нужное количество раз
-    for (let i = 0; i < needed; i++) {
-      originalItems.forEach(item => {
-        track.appendChild(item.cloneNode(true));
-      });
+    const items = Array.from(track.children);
+    // Дублируем пока ширина трека не превышает экран × 4 — запас для любого устройства
+    while (track.scrollWidth < window.innerWidth * 4) {
+      items.forEach(item => track.appendChild(item.cloneNode(true)));
     }
 
-    // Анимируем на -50% от финальной ширины (= 1 оригинальный сет)
-    const totalWidth = track.scrollWidth;
-    const halfPx     = totalWidth / 2;
-    const duration   = (halfPx / 80).toFixed(0); // ~80px/s
+    // Половина трека — это один полный цикл
+    const loopWidth = track.scrollWidth / 2;
+    let x = 0;
+    const speed = 0.6; // px за кадр (~36px/s на 60fps)
 
-    track.style.animation = `ticker-go ${duration}s linear infinite`;
+    function step() {
+      x += speed;
+      if (x >= loopWidth) x -= loopWidth; // сброс — мгновенный, без прыжка
+      track.style.transform = `translateX(${-x}px)`;
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
   });
 })();
 
@@ -91,6 +91,13 @@ if (!isMobile) {
    anim.onfinish → cancel() → inline style
    чтобы hover-трансформы работали после
 ═══════════════════════════════════════ */
+// Страховка: на мобиле явно скрываем hero-right через JS
+// (на случай если CSS не успел применить display:none)
+const heroRightEl = document.getElementById('heroRight');
+if (isMobile && heroRightEl) {
+  heroRightEl.style.display = 'none';
+}
+
 if (!isMobile) {
   const baseRots  = [-4, 3.5, 2, -3];
   const heroCards = document.querySelectorAll('.hero-right .sticker-card');
