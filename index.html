@@ -470,13 +470,18 @@
     <div class="svc-card">
       <div class="svc-top">
         <div class="svc-icon" style="background:var(--mint)">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="7"  cy="17" rx="3.5" ry="5.5" fill="#2B1B3A" opacity="0.85"/>
-            <ellipse cx="12" cy="15" rx="3.5" ry="6.5" fill="#2B1B3A"/>
-            <ellipse cx="17" cy="16" rx="3.5" ry="5.8" fill="#2B1B3A" opacity="0.85"/>
-            <ellipse cx="21" cy="17.5" rx="2.8" ry="4.8" fill="#2B1B3A" opacity="0.7"/>
-            <rect x="4" y="10" width="15" height="3" rx="1.5" fill="#2B1B3A" opacity="0.3"/>
-            <circle cx="19" cy="8" r="3" fill="#FF8AC4" stroke="#2B1B3A" stroke-width="1.5"/>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Флакон лака -->
+            <rect x="10" y="13" width="8" height="10" rx="2" fill="#2B1B3A"/>
+            <rect x="12" y="9"  width="4" height="5"  rx="1" fill="#2B1B3A"/>
+            <rect x="9"  y="12" width="10" height="2" rx="1" fill="#2B1B3A"/>
+            <!-- Кисточка -->
+            <line x1="14" y1="9" x2="14" y2="5" stroke="#2B1B3A" stroke-width="1.8" stroke-linecap="round"/>
+            <ellipse cx="14" cy="4" rx="1.5" ry="2" fill="#2B1B3A"/>
+            <!-- Блик на флаконе -->
+            <rect x="12" y="15" width="2" height="5" rx="1" fill="white" opacity="0.25"/>
+            <!-- Капля -->
+            <path d="M21 10 C21 10 23.5 13 23.5 14.5 C23.5 15.88 22.38 17 21 17 C19.62 17 18.5 15.88 18.5 14.5 C18.5 13 21 10 21 10Z" fill="#FF8AC4" stroke="#2B1B3A" stroke-width="1.2"/>
           </svg>
         </div>
         <div class="svc-name">Маникюр</div>
@@ -507,12 +512,12 @@
       <div class="svc-top">
         <div class="svc-top-row">
           <div class="svc-icon" style="background:var(--lemon)">
-            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="10" y="3" width="6" height="10" rx="3" fill="#2B1B3A"/>
-              <rect x="9" y="12" width="8" height="11" rx="2" fill="#2B1B3A" opacity="0.75"/>
-              <line x1="9" y1="15" x2="17" y2="15" stroke="#FFF8F0" stroke-width="1.5"/>
-              <circle cx="19" cy="5" r="2.5" fill="#FF8AC4" stroke="#2B1B3A" stroke-width="1.2"/>
-              <circle cx="7"  cy="6" r="1.8" fill="#7EEAC0" stroke="#2B1B3A" stroke-width="1.2"/>
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Большая звезда -->
+              <path d="M14 4 L15.5 11 L22 9 L17 14 L22 19 L15.5 17 L14 24 L12.5 17 L6 19 L11 14 L6 9 L12.5 11 Z" fill="#2B1B3A"/>
+              <!-- Маленькие искры -->
+              <path d="M22 5 L22.6 7 L24.5 7 L23 8.2 L23.6 10 L22 8.8 L20.4 10 L21 8.2 L19.5 7 L21.4 7 Z" fill="#2B1B3A" opacity="0.5"/>
+              <circle cx="6" cy="20" r="1.5" fill="#2B1B3A" opacity="0.4"/>
             </svg>
           </div>
           <div class="svc-badge">✦ Хит</div>
@@ -544,12 +549,16 @@
     <div class="svc-card">
       <div class="svc-top">
         <div class="svc-icon" style="background:var(--lilac)">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="7"  cy="18" rx="3" ry="6.5" fill="#2B1B3A" opacity="0.85"/>
-            <ellipse cx="12" cy="15" rx="3" ry="9"   fill="#2B1B3A"/>
-            <ellipse cx="17" cy="16" rx="3" ry="8"   fill="#2B1B3A" opacity="0.85"/>
-            <ellipse cx="21" cy="18" rx="2.5" ry="6" fill="#2B1B3A" opacity="0.7"/>
-            <path d="M4.5 12 Q12 4 19.5 10" stroke="#C9AAFF" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Кристалл -->
+            <polygon points="14,4 22,10 19,23 9,23 6,10" fill="#2B1B3A"/>
+            <!-- Грани (блики) -->
+            <polygon points="14,4 22,10 14,13" fill="white" opacity="0.15"/>
+            <polygon points="14,4 6,10  14,13" fill="white" opacity="0.08"/>
+            <line x1="14" y1="4" x2="14" y2="13" stroke="white" stroke-width="0.8" opacity="0.3"/>
+            <line x1="14" y1="13" x2="22" y2="10" stroke="white" stroke-width="0.8" opacity="0.2"/>
+            <!-- Блик -->
+            <circle cx="11" cy="9" r="1.5" fill="white" opacity="0.35"/>
           </svg>
         </div>
         <div class="svc-name">Наращивание</div>

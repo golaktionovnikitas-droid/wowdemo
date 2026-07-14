@@ -379,7 +379,7 @@ h1 .accent-mint { background: var(--mint); }
 .svc-top-row { display: flex; align-items: center; justify-content: space-between; }
 
 .svc-featured .svc-top {
-  background: linear-gradient(135deg, #FFB3D9 0%, #FF8AC4 50%, #FF6BBB 100%);
+  background: linear-gradient(135deg, #ffc8e8 0%, #FF8AC4 55%, #e8559e 100%) !important;
 }
 
 .svc-icon {
