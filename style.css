@@ -352,6 +352,78 @@ h1 .accent-mint { background: var(--mint); }
 .portfolio-more { display: flex; justify-content: center; margin-top: 48px; }
 
 
+/* ── Услуги ── */
+.services { position: relative; z-index: 5; padding: 80px 48px; }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.svc-card {
+  background: white;
+  border: 3px solid var(--dark); border-radius: 20px;
+  box-shadow: 5px 5px 0 var(--dark);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+
+.svc-top { padding: 24px 24px 18px; display: flex; flex-direction: column; gap: 10px; }
+.svc-top-row { display: flex; align-items: center; justify-content: space-between; }
+
+.svc-featured .svc-top { background: var(--pink); }
+
+.svc-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  border: 2.5px solid var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+
+.svc-badge {
+  background: var(--dark); color: var(--lemon);
+  font-size: 11px; font-weight: 900; letter-spacing: 0.5px;
+  border-radius: 99px; padding: 4px 12px;
+  white-space: nowrap;
+}
+
+.svc-name { font-size: 20px; font-weight: 900; color: var(--dark); }
+.svc-desc { font-size: 13px; font-weight: 700; color: var(--dark); opacity: 0.55; line-height: 1.5; }
+
+.svc-divider { height: 3px; background: var(--dark); }
+
+.svc-options { padding: 16px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+
+.svc-option {
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 12px;
+}
+
+.svc-oname {
+  font-size: 14px; font-weight: 700; color: var(--dark);
+  /* не даём имени сжиматься и выдавливать цену */
+  min-width: 0; flex: 1;
+}
+
+.svc-price {
+  font-size: 14px; font-weight: 900; color: white;
+  background: var(--dark); border-radius: 99px;
+  padding: 4px 14px;
+  white-space: nowrap;      /* цена всегда в одну строку */
+  flex-shrink: 0;           /* не сжимается ни при каких условиях */
+  text-align: center;
+}
+
+.svc-footer {
+  padding: 16px 24px;
+  border-top: 3px solid var(--dark);
+  background: var(--cream);
+}
+.svc-footer .btn-main { width: 100%; justify-content: center; }
+
+
 /* ════════════════════════════════════
    АДАПТИВ
 ════════════════════════════════════ */
@@ -381,6 +453,9 @@ h1 .accent-mint { background: var(--mint); }
 
   .portfolio { padding: 60px 28px; }
   .section-head { flex-direction: column; align-items: flex-start; }
+
+  .services { padding: 60px 28px; }
+  .services-grid { grid-template-columns: 1fr; gap: 16px; }
 
   /* Grid вместо columns — ряды выровнены, нет дыр */
   .works-grid {
@@ -422,6 +497,9 @@ h1 .accent-mint { background: var(--mint); }
   .ticker-item { font-size: 12px; padding: 0 16px; gap: 12px; }
 
   .portfolio { padding: 44px 20px; }
+  .services  { padding: 44px 20px; }
+  .svc-name  { font-size: 18px; }
+  .svc-oname, .svc-price { font-size: 13px; }
   .works-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
   .work-card  { border-radius: 14px; border-width: 2.5px; }
   .work-meta  { padding: 8px 10px; }
