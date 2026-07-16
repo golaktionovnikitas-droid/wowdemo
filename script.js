@@ -28,50 +28,20 @@ document.fonts.ready.then(() => {
 
 
 /* ═══════════════════════════════════════
-   1. TICKER — RAF-анимация, абсолютно бесшовная
-   Клонируем оригинальные items один раз,
-   двигаем через translateX на каждый кадр,
-   сбрасываем когда прошли ровно ширину оригинала.
+   1. TICKER — CSS-анимация, бесшовная
+   Два идентичных набора в DOM → CSS translateX(0 → -50%)
+   Никакого JS-расчёта ширины — браузер сам.
 ═══════════════════════════════════════ */
 (function initTicker() {
   const track = document.getElementById('tickerTrack');
   if (!track || prefersReduced) return;
 
-  // Ждём layout, чтобы браузер посчитал реальную ширину
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      const originalItems = Array.from(track.children);
-      const originalCount = originalItems.length;
+  // Клонируем весь набор items один раз → итого 2 набора
+  const original = Array.from(track.children);
+  original.forEach(item => track.appendChild(item.cloneNode(true)));
 
-      // Дублируем пока трек не перекрывает экран минимум в 3 раза
-      while (track.scrollWidth < window.innerWidth * 3) {
-        originalItems.forEach(item => track.appendChild(item.cloneNode(true)));
-      }
-
-      // Ширина одного полного набора оригинальных элементов
-      // (суммируем только первые originalCount детей после layout)
-      let singleSetWidth = 0;
-      Array.from(track.children).slice(0, originalCount).forEach(el => {
-        singleSetWidth += el.getBoundingClientRect().width;
-      });
-
-      // Если ширина ещё не посчиталась — fallback через scrollWidth
-      if (singleSetWidth === 0) {
-        singleSetWidth = track.scrollWidth / Math.floor(track.children.length / originalCount);
-      }
-
-      let x = 0;
-      const speed = 0.6; // px за кадр (~36px/s на 60fps)
-
-      function step() {
-        x += speed;
-        if (x >= singleSetWidth) x -= singleSetWidth; // сброс без прыжка
-        track.style.transform = `translateX(${-x}px)`;
-        requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
-  });
+  // Запускаем CSS-анимацию
+  track.classList.add('ticker-ready');
 })();
 
 
@@ -340,3 +310,39 @@ aboutEls.forEach(el => aboutObs.observe(el));
 if (isMobile) {
   document.querySelectorAll('.about-text').forEach(el => el.classList.add('in-view'));
 }
+
+
+/* ═══════════════════════════════════════
+   9. ПОКАЗАТЬ / СКРЫТЬ — портфолио
+═══════════════════════════════════════ */
+(function initShowMore() {
+  const grid = document.querySelector('.works-grid');
+  const btn  = document.getElementById('showMoreBtn');
+  if (!grid || !btn) return;
+
+  // Стартуем со свёрнутым состоянием
+  grid.classList.add('collapsed');
+  btn.textContent = 'Показать все работы ✦';
+
+  btn.addEventListener('click', () => {
+    const isCollapsed = grid.classList.contains('collapsed');
+
+    if (isCollapsed) {
+      // — ОТКРЫТЬ —
+      grid.classList.remove('collapsed');
+      btn.textContent = 'Скрыть ↑';
+
+      // Анимация появления новых карточек
+      document.querySelectorAll('.work-card:not(.in-view)').forEach((card, i) => {
+        setTimeout(() => card.classList.add('in-view'), i * 60);
+      });
+    } else {
+      // — ЗАКРЫТЬ —
+      grid.classList.add('collapsed');
+      btn.textContent = 'Показать все работы ✦';
+
+      // Плавно скроллим обратно к разделу работ
+      document.getElementById('works')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+})();

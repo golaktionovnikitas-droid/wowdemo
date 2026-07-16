@@ -451,7 +451,7 @@
   </div><!-- /works-grid -->
 
   <div class="portfolio-more">
-    <a href="#contacts" class="btn-sec">Записаться на маникюр ✦</a>
+    <button class="btn-show-more" id="showMoreBtn">Показать все работы ✦</button>
   </div>
 </section>
 
@@ -636,6 +636,159 @@
 
   </div>
 </section>
+
+<!-- ══════════════════════════════════════
+     КОНТАКТЫ
+══════════════════════════════════════ -->
+<section class="contacts" id="contacts">
+  <div class="contacts-inner">
+
+    <!-- Левая колонка: заголовок + текст -->
+    <div class="contacts-left">
+      <span class="section-eyebrow">связаться</span>
+      <h2 class="section-title">Запишись <span class="hl" style="background:var(--pink)">сейчас</span></h2>
+      <p class="contacts-desc">Пиши в любой мессенджер — отвечу быстро и подберём удобное время. Принимаю в Москве и выезжаю на дом.</p>
+
+      <!-- Кнопки соцсетей -->
+      <div class="contacts-links">
+        <a href="https://t.me/username" class="contacts-btn contacts-btn--tg" target="_blank">
+          <!-- Telegram plane icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.665 3.717L2.935 10.554c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.433z" fill="white"/>
+          </svg>
+          Написать в Telegram
+        </a>
+        <a href="https://vk.com/username" class="contacts-btn contacts-btn--vk" target="_blank">
+          <!-- VK icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21.547 7h-3.29a.743.743 0 0 0-.655.392s-1.312 2.416-1.734 3.23C14.734 12.813 14 12.126 14 11.11V7.603A1.104 1.104 0 0 0 12.896 6.5h-2.474a1.982 1.982 0 0 0-1.75.813s1.255-.204 1.255 1.49c0 .42.022 1.626.04 2.64a.73.73 0 0 1-1.272.503 21.54 21.54 0 0 1-2.498-4.543.693.693 0 0 0-.63-.403h-2.99a.508.508 0 0 0-.48.685C3.005 10.175 6.918 18 11.38 18h1.878a.742.742 0 0 0 .742-.742v-1.135a.73.73 0 0 1 1.23-.53l2.247 2.112a1.092 1.092 0 0 0 .746.295h2.953c1.424 0 1.424-.988.647-1.753-.546-.538-2.518-2.617-2.518-2.617a1.02 1.02 0 0 1-.078-1.323c.637-.84 1.68-2.212 2.122-2.8.603-.804 1.697-2.507.517-2.507z" fill="white"/>
+          </svg>
+          ВКонтакте
+        </a>
+        <a href="https://instagram.com/username" class="contacts-btn contacts-btn--ig" target="_blank">
+          <!-- Instagram icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="6" stroke="white" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="white"/>
+          </svg>
+          Instagram
+        </a>
+      </div>
+
+      <!-- Инфо-бейджи -->
+      <div class="contacts-badges">
+        <div class="contacts-badge">
+          <span class="cb-icon">📍</span>
+          <div><div class="cb-label">Где принимаю</div><div class="cb-val">Москва, м. Таганская</div></div>
+        </div>
+        <div class="contacts-badge">
+          <span class="cb-icon">🕐</span>
+          <div><div class="cb-label">Часы работы</div><div class="cb-val">Пн–Сб, 10:00–20:00</div></div>
+        </div>
+        <div class="contacts-badge">
+          <span class="cb-icon">⚡</span>
+          <div><div class="cb-label">Отвечаю</div><div class="cb-val">Обычно за 30 минут</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Правая колонка: отзывы -->
+    <div class="contacts-right">
+
+      <!-- Шапка блока отзывов -->
+      <div class="reviews-header">
+        <div class="reviews-yandex-badge">
+          <!-- Яндекс лого -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="12" fill="#FC3F1D"/>
+            <text x="12" y="17" text-anchor="middle" font-family="Arial" font-weight="900" font-size="14" fill="white">Я</text>
+          </svg>
+          <span>Яндекс Карты</span>
+        </div>
+        <div class="reviews-overall">
+          <div class="reviews-score">5.0</div>
+          <div>
+            <div class="reviews-stars">★★★★★</div>
+            <div class="reviews-count">На основе 47 отзывов</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Карточки отзывов -->
+      <div class="reviews-list">
+
+        <div class="review-card">
+          <div class="review-top">
+            <div class="review-avatar" style="background:var(--pink)">А</div>
+            <div>
+              <div class="review-name">Алина К.</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <div class="review-date">2 нед. назад</div>
+          </div>
+          <p class="review-text">Очень довольна результатом! Ника сделала именно то, что я хотела, даже лучше. Дизайн держится уже третью неделю без сколов ✨</p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-top">
+            <div class="review-avatar" style="background:var(--mint)">М</div>
+            <div>
+              <div class="review-name">Мария Л.</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <div class="review-date">1 мес. назад</div>
+          </div>
+          <p class="review-text">Хожу уже полгода, никуда не ухожу 🙈 Аккуратная работа, чистота, приятная атмосфера. Советую всем подругам!</p>
+        </div>
+
+        <div class="review-card">
+          <div class="review-top">
+            <div class="review-avatar" style="background:var(--lemon)">Д</div>
+            <div>
+              <div class="review-name">Дарья П.</div>
+              <div class="review-stars">★★★★★</div>
+            </div>
+            <div class="review-date">1 мес. назад</div>
+          </div>
+          <p class="review-text">Сделала арт-маникюр по референсу — Ника воплотила всё идеально. Цена очень адекватная за такое качество!</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     ФУТЕР
+══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">nika<span>nails</span></div>
+    <nav class="footer-nav">
+      <a href="#works">Работы</a>
+      <a href="#services">Услуги</a>
+      <a href="#about">Обо мне</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="footer-socials">
+      <a href="https://t.me/username" class="footer-social-btn" target="_blank" aria-label="Telegram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z" fill="currentColor"/></svg>
+      </a>
+      <a href="https://vk.com/username" class="footer-social-btn" target="_blank" aria-label="VK">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21.547 7h-3.29a.743.743 0 0 0-.655.392s-1.312 2.416-1.734 3.23C14.734 12.813 14 12.126 14 11.11V7.603A1.104 1.104 0 0 0 12.896 6.5h-2.474a1.982 1.982 0 0 0-1.75.813s1.255-.204 1.255 1.49c0 .42.022 1.626.04 2.64a.73.73 0 0 1-1.272.503 21.54 21.54 0 0 1-2.498-4.543.693.693 0 0 0-.63-.403h-2.99a.508.508 0 0 0-.48.685C3.005 10.175 6.918 18 11.38 18h1.878a.742.742 0 0 0 .742-.742v-1.135a.73.73 0 0 1 1.23-.53l2.247 2.112a1.092 1.092 0 0 0 .746.295h2.953c1.424 0 1.424-.988.647-1.753-.546-.538-2.518-2.617-2.518-2.617a1.02 1.02 0 0 1-.078-1.323c.637-.84 1.68-2.212 2.122-2.8.603-.804 1.697-2.507.517-2.507z" fill="currentColor"/></svg>
+      </a>
+      <a href="https://instagram.com/username" class="footer-social-btn" target="_blank" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Nika Nails. Все права защищены.</span>
+    <span>Москва · Маникюр и дизайн ногтей</span>
+  </div>
+</footer>
 
 <script src="script.js"></script>
 </body>
